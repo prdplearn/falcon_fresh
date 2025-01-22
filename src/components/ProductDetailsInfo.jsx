@@ -1,26 +1,27 @@
 
+import { Rating } from "@mui/material";
 import QuantityBox from "../components/QuantityBox";
 import { AiFillShopping } from "react-icons/ai";
 import { CiHeart } from "react-icons/ci";
 import { DiGitCompare } from "react-icons/di";
 
 const ProductDetailsInfo = () => {
-  
+
 
     return (
         <>
             <div className="product_content flex flex-col px-6">
                 <div className="mb-3">
                     <h2 className="font-bold text-2xl text-slate-800 mb-3">
-                    Lacnor Essentials Orange Juice 180ml (Pack of 8)
+                        Lacnor Essentials Orange Juice 180ml (Pack of 8)
                     </h2>
                     <span className=" inline-block px-4 py-2 text-xs bg-orange-100 rounded-md">
                         {" "}
                         Voya
                     </span>
                     <div className="my-2 flex items-center gap-2">
-                        {/* <Rating name="read-only" value={4} readOnly size="small" /> */}
-                         (4.3)
+                        <Rating name="read-only" value={4} readOnly size="small" />
+                        (4.3)
                         Ratings
                     </div>
                     <div className="in_stock my-3">
@@ -35,12 +36,12 @@ const ProductDetailsInfo = () => {
                     </div>
 
                     <div className="price py-3">
-                    <div class="text-md">
-											<span class="text-gray-900 font-semibold">$32</span>
-											<span class="line-through text-gray-500">$35</span>
+                        <div className="text-md">
+                            <span className="text-gray-900 font-semibold ">$32</span>
+                            <span className="line-through text-gray-500 px-2">$35</span>
 
-											<span><small class="text-red-600">26% Off</small></span>
-										</div>
+                            <span><small className="text-red-600">26% Off</small></span>
+                        </div>
                     </div>
                     <div className="desc mt-3">
                         <p className="text-sm text-slate-500">

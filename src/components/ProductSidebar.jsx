@@ -14,7 +14,7 @@ const Sidebar = () => {
   const [isSizeOpen, setIsSizeOpen] = useState(true);
 
   return (
-    <aside className="w-[20%]">
+    <aside className="f-full lg:w-[20%] fixed top-0 -left-full lg:static">
       <div className="pr-4 bg-slate-50 p-3 rounded-lg w-full">
         <div className="divide-y divide-slate-200 dark:divide-slate-700">
           <div className="relative flex flex-col pb-8 space-y-4">

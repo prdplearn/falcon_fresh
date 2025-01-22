@@ -25,10 +25,10 @@ const QuantityBox = () => {
    
     return (
         <div>
-            <div className="quantity__wrapper">
-                <button className="minus" onClick={decreaseQty}>&minus;</button>
-                <input type="number" className="input-box" value={qtyValue} onChange={handleQuantity}  min="1" max="10" />
-                <button className="plus" onClick={increaseQty}>+</button>
+            <div className="quantity__wrapper !border-gray-300">
+                <button className="minus bg-slate-100  text-green-600" onClick={decreaseQty}>&minus;</button>
+                <input type="text" className="input-box text-xs" value={qtyValue} onChange={handleQuantity}  min="1" max="10" />
+                <button className="plus  bg-slate-100 text-green-600" onClick={increaseQty}>+</button>
             </div>
         </div>
     )

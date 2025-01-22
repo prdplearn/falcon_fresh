@@ -4,6 +4,9 @@ import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbP
 import Link from 'next/link'
 import ProductDetailsInfo from '@/components/ProductDetailsInfo'
 import ProductZoom from '@/components/ProductZoom'
+import ProductTab from '@/components/ProductTab'
+import ProductCard from '@/components/ProductCard'
+import { productData } from '@/utils/data'
 const ProductDetailsPage = () => {
     return (
         <>
@@ -26,7 +29,6 @@ const ProductDetailsPage = () => {
                         </BreadcrumbList>
                     </Breadcrumb>
                 </Wrapper>
-
                 <Wrapper>
                     <div className="flex Product_info_Details gap-5">
                         <div className="w-[50%]">
@@ -40,11 +42,32 @@ const ProductDetailsPage = () => {
                     </div>
                 </Wrapper>
 
+                <Wrapper>
+                    <ProductTab />
+                </Wrapper>
+
+
+                <section className="feature_products py-8">
+                    <Wrapper>
+                        <div className="grid grid-cols-2">
+                            <div className="py-6">
+                                <h2 className="text-2xl md:text-3xl font-semibold mb-3 ">
+                                    Related Products
+                                </h2>
+                            </div>
+                        </div>
+
+                        <div className='grid grid-cols-1 lg:grid-cols-3 gap-6'>
+                            
+                            {
+								productData && productData.slice(0, 3).map((product) => <ProductCard key={product.id} product={product} />)
+							}
+
+                        </div>
+
+                    </Wrapper>
+                </section>
             </section>
-
-
-
-
 
         </>
     )

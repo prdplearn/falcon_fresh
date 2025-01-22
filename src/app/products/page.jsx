@@ -36,7 +36,7 @@ const ProductPage = () => {
 
 			</section>
 			<Wrapper className="lg:!px-0">
-				<div className="flex gap-6 mt-6">
+				<div className="flex flex-col  lg:flex-row gap-6 mt-6">
 					<Sidebar />
 					<article className="flex-1">
 						<div className="relative flex flex-col min-w-0 rounded-lg break-words bg-gray-100 p-8 mb-6">
@@ -53,8 +53,6 @@ const ProductPage = () => {
 									Products found
 								</p>
 							</div>
-
-
 							<div className="flex flex-col md:flex-row justify-between md:items-center gap-3">
 								<div className="flex items-center justify-between">
 									<div className="flex items-center gap-4">
@@ -98,14 +96,14 @@ const ProductPage = () => {
 										</a>
 									</div>
 									<div className="ml-3 lg:hidden">
-										<a className="btn inline-flex items-center gap-x-2 bg-white text-gray-800 border-gray-300 border disabled:opacity-50 disabled:pointer-events-none hover:text-white hover:bg-gray-700 hover:border-gray-700 active:bg-gray-700 active:border-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-300" data-bs-toggle="offcanvas" href="#offcanvasCategory" role="button" aria-controls="offcanvasCategory">
+										<button className="btn rounded-md p-2  inline-flex items-center gap-x-2 bg-white text-gray-800 border-gray-300 border disabled:opacity-50 disabled:pointer-events-none hover:text-white hover:bg-gray-700 hover:border-gray-700 active:bg-gray-700 active:border-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-300" >
 											<svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-filter inline-block" width="16" height="16" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
 												<path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
 												<path d="M4 4h16v2.172a2 2 0 0 1 -.586 1.414l-4.414 4.414v7l-6 2v-8.5l-4.48 -4.928a2 2 0 0 1 -.52 -1.345v-2.227z">
 												</path>
 											</svg>
 											Filters
-										</a>
+										</button>
 									</div>
 								</div>
 
