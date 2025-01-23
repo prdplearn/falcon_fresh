@@ -33,7 +33,7 @@ const AccountSidebar = () => {
 
                         <Link
                             href="/profile"
-                            className={isActive('/profile') ? 'active text-pink-500  text-sm border-l-2 border-transparent mt-5 cursor-pointer font-semibold px-2 transition' : 'text-slate-500 text-sm border-l-2 border-transparent mt-5 cursor-pointer font-semibold px-2 transition block'}
+                            className={isActive('/profile') ? 'active text-pink-500 block text-sm border-l-2 border-transparent mt-5 cursor-pointer font-semibold px-2 transition' : 'text-slate-500 text-sm border-l-2 border-transparent mt-5 cursor-pointer font-semibold px-2 transition block'}
                           
                         >
                           My Profile
@@ -41,7 +41,7 @@ const AccountSidebar = () => {
 
                         <Link
                             href="/wishlist"
-                            className={isActive('/wishlist') ? 'active text-pink-500  text-sm border-l-2 border-transparent mt-5 cursor-pointer font-semibold px-2 transition' : 'text-slate-500 text-sm border-l-2 border-transparent mt-5 cursor-pointer font-semibold px-2 transition block'}
+                            className={isActive('/wishlist') ? 'active text-pink-500 block  text-sm border-l-2 border-transparent mt-5 cursor-pointer font-semibold px-2 transition' : 'text-slate-500 text-sm border-l-2 border-transparent mt-5 cursor-pointer font-semibold px-2 transition block'}
                         >
                             Wishlist
                         </Link>
@@ -50,13 +50,13 @@ const AccountSidebar = () => {
 
                         <Link
                             href="/orders"
-                            className={isActive('/orders') ? 'active text-pink-500  text-sm border-l-2 border-transparent mt-5 cursor-pointer font-semibold px-2 transition' : 'text-slate-500 text-sm border-l-2 border-transparent mt-5 cursor-pointer font-semibold px-2 transition block'}
+                            className={isActive('/orders') ? 'active text-pink-500 block  text-sm border-l-2 border-transparent mt-5 cursor-pointer font-semibold px-2 transition' : 'text-slate-500 text-sm border-l-2 border-transparent mt-5 cursor-pointer font-semibold px-2 transition block'}
                         >
                             Orders
                         </Link>
 
 
-                        <li className="mt-5 cursor-pointer border-l-2 border-transparent text-sm px-2 font-semibold transition hover:border-l-pink-700 hover:text-pink-700">Logout</li>
+                        <li className="mt-5 cursor-pointer border-l-2 text-slate-500 border-transparent block text-sm px-2 font-semibold transition hover:border-l-pink-700 hover:text-pink-700">Logout</li>
 
                     </ul>
                 </div>

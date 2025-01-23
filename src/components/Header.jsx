@@ -80,9 +80,9 @@ const Header = () => {
                                         <DropdownMenuLabel>My Account</DropdownMenuLabel>
                                         <DropdownMenuSeparator />
                                         <DropdownMenuItem>Profile</DropdownMenuItem>
-                                        <DropdownMenuItem>Billing</DropdownMenuItem>
-                                        <DropdownMenuItem>Team</DropdownMenuItem>
-                                        <DropdownMenuItem>Subscription</DropdownMenuItem>
+                                        <DropdownMenuItem>Orders</DropdownMenuItem>
+                                        <DropdownMenuItem>Wishlist</DropdownMenuItem>
+                                        <DropdownMenuItem>Logout</DropdownMenuItem>
                                     </DropdownMenuContent>
                                 </DropdownMenu>
                                 <button className='w-full lg:ml-5 '>

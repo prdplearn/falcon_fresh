@@ -42,11 +42,11 @@ import HomeSlider4 from "@/assets/images/home-slider-4.webp"
 import P1 from "@/assets/images/product-img-1.jpg"
 import P2 from "@/assets/images/product-img-2.jpg"
 import P3 from "@/assets/images/product-img-3.jpg"
+import Placeholder from "@/assets/images/placeholder.svg"
 
 
 export {
     logo, cart_icon, user_icon, bulk_ic2, bulk_ic1, banner1, babyCare, CleanSupp, BulkDeals, FrozenFood, salt,
     Spices, Water, Product1, Product2, Product3, Product4, Product5, Sprite, Harpic, Fruit, leaf, coffee_img, JuiceImg, delivery_fresh,
-    plane_ic, cartBus, Percentage, PriceTag, ReturnIcon, MobileIcon, LogoWhite, MapIcon,HomeSlider1, MailIcon, ChatIcon, TimeIcon, HomeSlider2, adsPro, HomeSlider3,HomeSlider4,P1,P2,P3
-
+    plane_ic, cartBus, Percentage, PriceTag, ReturnIcon, MobileIcon, LogoWhite, MapIcon, HomeSlider1, MailIcon, ChatIcon, TimeIcon, HomeSlider2, adsPro, HomeSlider3, HomeSlider4, P1, P2, P3, Placeholder
 }
