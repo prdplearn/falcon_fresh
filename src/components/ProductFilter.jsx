@@ -1,6 +1,6 @@
 "use client"
 
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Wrapper from './Wrapper'
 import {
     NavigationMenu,
@@ -20,6 +20,23 @@ import ProductCard from './ProductCard';
 import { Button } from './ui/button';
 import { leaf } from '@/assets/images';
 const ProductFilter = () => {
+          const [products, setProducts] = useState([]);
+         const fetchData = async () => {
+             try {
+                 const response = await fetch("https://dummyjson.com/products?limit=150");
+                 if (!response.ok) {
+                     throw new Error(`HTTP error! Status: ${response.status}`);
+                 }
+                 const { products } = await response.json();
+                 setProducts(products);
+             } catch (error) {
+                 console.error("Failed to fetch data:", error);
+             }
+         };
+     
+         useEffect(() => {
+             fetchData();
+         }, []);
     return (
         <>
             <Wrapper className="!px-0">
@@ -93,8 +110,8 @@ const ProductFilter = () => {
                                     }}
                                 >
                                     {/* Map Over Category Data */}
-                                    {productData && productData.length > 0
-                                        ? productData.map((product, index) => (
+                                    {products && products.length > 0
+                                        ? products.map((product, index) => (
                                             <SwiperSlide key={`${product.id}-${index}`}> {/* Combine ID and index */}
                                                 <ProductCard product={product} />
                                             </SwiperSlide>

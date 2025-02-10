@@ -2,6 +2,7 @@
 import { Placeholder } from '@/assets/images'
 import { register } from '@/serverActions/auth'
 import Image from 'next/image'
+import Link from 'next/link'
 import React, { useActionState } from 'react'
 
 const RegisterPage = () => {
@@ -74,7 +75,7 @@ const RegisterPage = () => {
                                             </button>
                                         </div>
                                         <div className="text-center text-sm">
-                                            Already have an account? <a href="#" className="underline underline-offset-4">Login</a>
+                                            Already have an account? <Link href="/login" className="underline underline-offset-4">Login</Link>
                                         </div>
                                     </div>
                                 </form>
@@ -83,7 +84,7 @@ const RegisterPage = () => {
                             </div>
                         </div>
                         <div className="text-balance text-center text-xs text-muted-foreground [&amp;_a]:underline [&amp;_a]:underline-offset-4 hover:[&amp;_a]:text-primary">
-                            By clicking continue, you agree to our <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>.
+                            By clicking continue, you agree to our <Link     href="#">Terms of Service</Link> and <Link href="#">Privacy Policy</Link>.
                         </div>
                     </div>
                 </div>

@@ -1,10 +1,15 @@
 import { Placeholder } from '@/assets/images'
+import NavLink from '@/components/NavLink'
 import OTPBox from '@/components/OTPBox'
 import ResetPasswordBox from '@/components/ResetPasswordBox'
+import getAuthUser from '@/lib/getAuthUser'
 import Image from 'next/image'
 import React from 'react'
 
-const VerifyAccountPage = () => {
+const VerifyAccountPage = async() => {
+const sessionData=  await getAuthUser()
+console.log(sessionData);
+
   return (
     <>
          <div className="flex min-h-svh flex-col items-center justify-center bg-muted p-6 md:p-10">
@@ -18,6 +23,7 @@ const VerifyAccountPage = () => {
                                                   <h1 className="text-2xl font-bold">Welcome back</h1>
                                                   <p className="text-balance text-muted-foreground">Verify your an account</p>
                                               </div>
+                                              <NavLink href="/verify_account" label="verify_account"/>
 
                                              <OTPBox/>
                                             

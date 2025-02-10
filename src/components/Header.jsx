@@ -1,4 +1,4 @@
-"use client"
+
 
 import React from 'react'
 import Wrapper from './Wrapper'
@@ -9,14 +9,7 @@ import SearchBar from './Search'
 import CountrySelect from './CountrySelect'
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { GoDot } from "react-icons/go";
-import {
-    DropdownMenu,
-    DropdownMenuContent,
-    DropdownMenuItem,
-    DropdownMenuLabel,
-    DropdownMenuSeparator,
-    DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
+
 import {
     Sheet,
     SheetContent,
@@ -30,10 +23,16 @@ import { Button } from './ui/button'
 import { IoMenu } from "react-icons/io5";
 import Menu from './Menu'
 import { Input } from './ui/input'
+import UserAuth from './UserAuth'
+import getAuthUser from '@/lib/getAuthUser'
+import NavLink from './NavLink'
 
 
 
-const Header = () => {
+const Header = async () => {
+    const sessionData = await getAuthUser()
+    console.log("header", sessionData);
+
     return (
         <>
             <div className='bg-[#60BAAE] top_bar'>
@@ -62,7 +61,7 @@ const Header = () => {
                         <div className='flex gap-5 items-center'>
                             <div className="logo w-auto md:w-[200px]">
                                 <Link href="/">
-                                <Image src={logo} alt='logo' width={140} height={140} className=' h-[80px] md:w-[150px]' />
+                                    <Image src={logo} alt='logo' width={140} height={140} className=' h-[80px] md:w-[150px]' />
                                 </Link>
                             </div>
                             <SearchBar />
@@ -70,29 +69,23 @@ const Header = () => {
                         <div className="cart_compo flex justify-center items-center ">
                             <div className='flex gap-3'>
                                 <CountrySelect />
-                                <DropdownMenu>
-                                    <DropdownMenuTrigger>
-                                        <div className='flex'>
-                                            <Image src={user_icon} width={30} height={30} alt='User Icon' className='lg:mr-3 inline-block w-[50px] xl:w-[30px]' />
-                                            <span className='hidden xl:inline'>Account</span> </div>
-                                    </DropdownMenuTrigger>
-                                    <DropdownMenuContent>
-                                        <DropdownMenuLabel>My Account</DropdownMenuLabel>
-                                        <DropdownMenuSeparator />
-                                        <DropdownMenuItem>Profile</DropdownMenuItem>
-                                        <DropdownMenuItem>Orders</DropdownMenuItem>
-                                        <DropdownMenuItem>Wishlist</DropdownMenuItem>
-                                        <DropdownMenuItem>Logout</DropdownMenuItem>
-                                    </DropdownMenuContent>
-                                </DropdownMenu>
+                                {
+                                    sessionData ? <UserAuth /> : (<div className='flex items-center'>
+                                        <Image src={user_icon} width={30} height={30} alt='User Icon' className='lg:mr-2 inline-block w-[50px] xl:w-[30px]' /><NavLink href="/login" label="Login" />
+                                    </div>)
+                                }
+
+
                                 <button className='w-full lg:ml-5 '>
-                                    <Image className='inline-block w-[20px] lg:w-[30px]' alt='cart' src={cart_icon} width={25} height={25} /> (<span className='count text-lg text-[#B21F78]'>0</span>)
+                                    <Link href="/cart">
+                                        <Image className='inline-block w-[20px] lg:w-[25px]' alt='cart' src={cart_icon} width={25} height={25} />
+                                        (<span className='count text-lg text-[#B21F78]'>0</span>)
+                                    </Link>
+
                                 </button>
                             </div>
                         </div>
                     </nav>
-
-
 
                 </Wrapper>
                 <menu className='border-2 border-t border-t-gray-300 border-b border-b-gray-300 lg:py-2'>
@@ -107,7 +100,6 @@ const Header = () => {
                                         <Input placeholder={"Search Product"} className="border border-gray-300 text-gray-900 rounded-lg focus:shadow-[0_0_0_.25rem_rgba(10,173,10,.25)] focus:ring-green-600 focus:ring-0 focus:border-green-600 focus-visible:outline-none focus:outline-none block p-2 px-3 disabled:opacity-50 disabled:pointer-events-none w-full text-base" />
                                         <Button className="w-full mt-2 text-left">Search a Product</Button>
                                     </div>
-
 
                                     <h2 className='mt-5 text-[--primeColor] pb-3 font-semibold text-left'>All Products</h2>
                                     <ScrollArea className="h-full lg:h-[70vh] w-[3

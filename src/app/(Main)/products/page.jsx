@@ -1,55 +1,80 @@
-import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator, } from "@/components/ui/breadcrumb"
-import React from 'react'
-import Link from "next/link"
-import Wrapper from "@/components/Wrapper"
-import Sidebar from "@/components/ProductSidebar"
-import ProductCard from "@/components/ProductCard"
-import { productData } from "@/utils/data"
+"use client";
+import { useEffect, useState } from "react";
+import Link from "next/link";
+import Wrapper from "@/components/Wrapper";
+import Sidebar from "@/components/ProductSidebar";
+import ProductCard from "@/components/ProductCard";
+import { PAGE_SIZE } from "@/utils/constants";
 
 import {
-	Pagination,
-	PaginationContent,
-	PaginationEllipsis,
-	PaginationItem,
-	PaginationLink,
-	PaginationNext,
-	PaginationPrevious,
-} from "@/components/ui/pagination"
+    Pagination,
+    PaginationContent,
+    PaginationItem,
+    PaginationLink,
+    PaginationNext,
+    PaginationPrevious,
+} from "@/components/ui/pagination";
 
 const ProductPage = () => {
-	return (
-		<>
-			<section className="products w-full py-4 ">
-				<Wrapper className="lg:!px-0">
-					<Breadcrumb>
-						<BreadcrumbList>
-							<BreadcrumbItem>
-								<Link href="/">Home</Link>
-							</BreadcrumbItem>
-							<BreadcrumbSeparator />
-							<BreadcrumbPage>
-								<Link href="/products">Products</Link>
-							</BreadcrumbPage>
-						</BreadcrumbList>
-					</Breadcrumb>
-				</Wrapper>
+    const [product, setProduct] = useState([]);
+    const [currentPage, setCurrentPage] = useState(0);
 
-			</section>
-			<Wrapper className="lg:!px-0">
-				<div className="flex flex-col  lg:flex-row gap-6 mt-6">
-					<Sidebar />
-					<article className="flex-1">
-						<div className="relative flex flex-col min-w-0 rounded-lg break-words bg-gray-100 p-8 mb-6">
+    const fetchData = async () => {
+        try {
+            const response = await fetch("https://dummyjson.com/products?limit=150");
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            const { products } = await response.json();
+            setProduct(products);
+        } catch (error) {
+            console.error("Failed to fetch data:", error);
+        }
+    };
 
-							<div className="flex-auto">
-								<h1 className="text-xl font-bold" >Snacks &amp; Munchies</h1>
-							</div>
-						</div>
+    useEffect(() => {
+        fetchData();
+    }, []);
+
+    // Pagination Calculation
+    const totalProducts = product.length;
+    const noOfPages = Math.ceil(totalProducts / PAGE_SIZE) - 1;
+    const start = currentPage * PAGE_SIZE;
+    const end = start + PAGE_SIZE;
+
+    // Handle Pagination Navigation
+    const handlePageChange = (n) => {
+        if (n >= 0 && n <= noOfPages) setCurrentPage(n);
+    };
+
+    const handlePrevPage = () => {
+        setCurrentPage((prev) => Math.max(0, prev - 1)); // Prevent going below 0
+    };
+
+    const handleNextPage = () => {
+        setCurrentPage((prev) => Math.min(noOfPages, prev + 1)); // Prevent going past last page
+    };
+
+    return (
+        <>
+            <section className="products w-full py-4">
+                <Wrapper className="lg:!px-0">
+                    <nav>
+                        <Link href="/">Home</Link> / <Link href="/products">Products</Link>
+                    </nav>
+                </Wrapper>
+            </section>
+
+            <Wrapper className="lg:!px-0">
+                <div className="flex flex-col lg:flex-row gap-6 mt-6">
+                    <Sidebar />
+                    <article className="flex-1">
+                        <h1 className="text-xl font-bold">Snacks & Munchies</h1>
 
 						<div className="flex flex-col md:flex-row justify-between lg:items-center mb-6 gap-3">
 							<div>
 								<p className="text-gray-600 text-sm">
-									<span className="text-gray-900 pr-1">24</span>
+									<span className="text-gray-900 pr-1">{product && product.length}</span>
 									Products found
 								</p>
 							</div>
@@ -134,41 +159,55 @@ const ProductPage = () => {
 
 
 						</div>
-						<div className="product grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-							{
-								productData && productData.map((product) => <ProductCard key={product.id} product={product} />)
-							}
 
-						</div>
+                        <div className="product grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+                            {product.slice(start, end).map((item) => (
+                                <ProductCard key={item.id} product={item} />
+                            ))}
+                        </div>
 
+                        {/* Pagination */}
+                        <div className="pagination_wrapper py-8">
+                            <Pagination>
+                                <PaginationContent>
+                                    <PaginationItem>
+                                        <button 
+                                            disabled={currentPage === 0} 
+                                            className="rounded-md disabled:bg-gray-200" 
+                                            onClick={handlePrevPage}
+                                        >
+                                            <PaginationPrevious />
+                                        </button>
+                                    </PaginationItem>
 
-						<div className="pagination_wrapper py-8">
-							<Pagination>
-								<PaginationContent>
-									<PaginationItem>
-										<PaginationPrevious href="#" />
-									</PaginationItem>
-									<PaginationItem>
-										<PaginationLink href="#">1</PaginationLink>
-									</PaginationItem>
-									<PaginationItem>
-										<PaginationEllipsis />
-									</PaginationItem>
-									<PaginationItem>
-										<PaginationNext href="#" />
-									</PaginationItem>
-								</PaginationContent>
-							</Pagination>
+                                    {[...Array(noOfPages + 1).keys()].map((n) => (
+                                        <PaginationItem key={n}>
+                                            <PaginationLink
+                                                className={`p-3 cursor-pointer ${n === currentPage ? "bg-orange-400" : ""}`}
+                                                onClick={() => handlePageChange(n)}
+                                            >
+                                                {n + 1}
+                                            </PaginationLink>
+                                        </PaginationItem>
+                                    ))}
 
-						</div>
+                                    <PaginationItem>
+                                        <button 
+                                            disabled={currentPage === noOfPages} 
+                                            className="rounded-md disabled:bg-gray-200" 
+                                            onClick={handleNextPage}
+                                        >
+                                            <PaginationNext />
+                                        </button>
+                                    </PaginationItem>
+                                </PaginationContent>
+                            </Pagination>
+                        </div>
+                    </article>
+                </div>
+            </Wrapper>
+        </>
+    );
+};
 
-					</article>
-				</div>
-			</Wrapper>
-
-
-		</>
-	)
-}
-
-export default ProductPage
+export default ProductPage;

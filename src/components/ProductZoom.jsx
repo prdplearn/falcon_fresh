@@ -8,20 +8,16 @@ import { Navigation, Pagination, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
+import Image from "next/image";
 
-const ProductZoom = () => {
+const ProductZoom = ({product}) => {
   // State to manage the main image
   const [mainImage, setMainImage] = useState(
-    "https://freshcart.codescandy.com/tailwindcss/assets/images/products/product-single-img-1.jpg"
+    product.thumbnail
   );
 
   // Array of product images
-  const productImages = [
-    "https://freshcart.codescandy.com/tailwindcss/assets/images/products/product-single-img-1.jpg",
-    "https://freshcart.codescandy.com/tailwindcss/assets/images/products/product-single-img-2.jpg",
-    "https://freshcart.codescandy.com/tailwindcss/assets/images/products/product-single-img-3.jpg",
-    "https://freshcart.codescandy.com/tailwindcss/assets/images/products/product-single-img-4.jpg",
-  ];
+  const productImages = product.images
 
   return (
     <div className="flex flex-col gap-2">
@@ -44,8 +40,10 @@ const ProductZoom = () => {
         >
           {productImages.map((image, index) => (
             <SwiperSlide key={index}>
-              <img
+              <Image
                 src={image}
+                width={600}
+                height={600}
                 alt={`Product thumbnail ${index + 1}`}
                 className={`cursor-pointer border ${
                   mainImage === image ? "border-teal-500" : "border-transparent"

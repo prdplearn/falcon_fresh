@@ -1,3 +1,4 @@
+"use client"
 import { useState } from "react";
 import { Select, SelectTrigger, SelectContent, SelectItem, SelectGroup, SelectLabel } from "@/components/ui/select";
 import Flag from "react-world-flags"; // Import the flag component

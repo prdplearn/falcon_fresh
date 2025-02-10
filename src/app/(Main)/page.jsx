@@ -11,7 +11,7 @@ import Wrapper from "@/components/Wrapper";
 import Image from "next/image";
 
 
-export default function Home() {
+export default async function Home() {
   return (
     <main className="">
       <Wrapper className="py-8">
