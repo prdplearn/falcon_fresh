@@ -26,7 +26,7 @@ const ProductCard = ({ product }) => {
                     </Link>
 
                     <div className='flex justify-between mt-3'>
-                        <p className='text-[--primeColor] text-[18px] '>$ {product.discountPercentage}</p><p className='text-[#6A6A6A] line-through'>$ {product.discountPercentage}</p>
+                        <p className='text-[--primeColor] text-[18px] '>$ {product.discountPercentage}</p><p className='text-[#6A6A6A]  line-through'>$ {product.discountPercentage}</p>
                     </div>
                 </div>
 
